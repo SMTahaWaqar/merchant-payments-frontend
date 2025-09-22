@@ -1,36 +1,127 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Merchant Payments Dashboard (Frontend)
 
-## Getting Started
+A modern **Next.js 13 App Router** frontend for merchants to track orders, payouts, and webhook activity.  
+**Deployed on Vercel** with HTTPS; API is proxied via a Next.js rewrite to an EC2 backend.
 
-First, run the development server:
+---
 
+## 🌐 Live URLs
+- **Frontend (Production)**: `https://merchant-payments-frontend.vercel.app/`  ← **replace with your actual Vercel URL**
+- **API Proxy (from browser)**: `https://merchant-payments-frontend.vercel.app//_api/health`
+- **Direct API (dev only)**: `http://52.77.238.249:3001/health`
+
+> The browser **must** use the HTTPS proxy path `/_api/...` to avoid mixed content. Do **not** call the EC2 IP directly from the frontend.
+
+---
+
+## 🧩 What you can do
+- View **Dashboard** with live KPIs, currency mix, and recent activity
+- Manage **Orders** (filters, pagination, open drawer, confirm/fail)
+- Create & track **Payouts**
+- Test **Webhooks** and inspect deliveries
+- Manage **API Key** (masked display + rotate)
+
+---
+
+## 🛠 Tech Stack
+- **Framework:** Next.js 13 (App Router, TS)
+- **UI:** Ant Design + CSS Modules (no inline styles)
+- **Data:** SWR + Axios
+- **Deploy:** Vercel
+- **Proxy:** Next.js `rewrites()` → `/ _api` → EC2 API
+
+---
+
+## 📦 Getting Started (local)
+
+### 1) Clone & install
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/<your-username>/merchant-payments-frontend.git
+cd merchant-payments-frontend
+npm ci
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2) Environment
+Create `.env.local`:
+```env
+NEXT_PUBLIC_API_URL="/_api"
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3) Next.js rewrite proxy
+`next.config.js`:
+```js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: '/_api/:path*',
+        destination: 'http://52.77.238.249:3001/:path*', // EC2 API
+      },
+    ];
+  },
+};
+module.exports = nextConfig;
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4) Run locally
+```bash
+npm run dev
+```
+Visit: http://localhost:3000
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🚢 Deploy to Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1) Push this repo to GitHub.  
+2) In Vercel → **New Project** → import repo.  
+3) **Environment Variable** (Production / Preview / Development):
+   ```env
+   NEXT_PUBLIC_API_URL="/_api"
+   ```
+4) Deploy.  
+5) Verify the proxy works:
+   ```
+   https://<YOUR_VERCEL_URL>.vercel.app/_api/health  →  { "ok": true }
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+If you change your EC2 IP, update `next.config.js` → `destination` and redeploy.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🧭 Navigation (pages & components)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+app/
+  layout.tsx         # theme providers (AntD + SWR) + globals
+  page.tsx           # Dashboard
+  orders/            # Orders (server wrapper + client component)
+  payouts/           # Payouts table + actions
+  settings/          # API Key card
+  developer/         # Webhooks panel
+components/
+  AppShell/          # Sidebar + Topbar shell
+  Orders/            # Filters, Table, Drawer
+  Payouts/           # Table + modal
+  Developer/         # Endpoint + deliveries + test
+  StatusBadge/       # Status chips
+  UI/Button/         # Gradient buttons
+  UI/Pill/           # Color pills
+lib/
+  fetcher.ts         # axios baseURL + fetcher
+  orders.ts          # types + SWR hook
+  format.ts          # money/number/time helpers
+```
+
+---
+
+## 🧰 Troubleshooting
+- **Mixed content blocked**: ensure all calls use `/_api/...` (proxy), remove any `http://52.77.238.249:3001` in code/env.  
+- **Orders page build error** (`useSearchParams`): the page uses a server wrapper + client component in `<Suspense>` to satisfy Next.js constraints.  
+- **CORS**: browser calls Vercel → Vercel calls EC2; CORS is not hit by the browser in this setup.
+
+---
+
+## 📜 License
+MIT
