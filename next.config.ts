@@ -4,7 +4,7 @@ const nextConfig = {
     return [
       {
         source: '/_api/:path*',
-        destination: 'http://52.77.238.249:3001/:path*', // your EC2 IP & port
+        destination: 'http://52.77.238.249:3001/:path*',
       },
     ];
   },
