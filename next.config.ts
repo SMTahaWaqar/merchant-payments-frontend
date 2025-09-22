@@ -1,7 +1,12 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: '/_api/:path*',
+        destination: 'http://52.77.238.249:3001/:path*', // your EC2 IP & port
+      },
+    ];
+  },
 };
-
-export default nextConfig;
+module.exports = nextConfig;
