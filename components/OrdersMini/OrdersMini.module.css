@@ -1,0 +1,52 @@
+.card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 16px;
+    box-shadow: var(--shadow-glow);
+}
+
+.title {
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    text-align: left;
+    padding: 10px 8px;
+    border-top: 1px dashed rgba(255, 255, 255, .06);
+    font-size: 13px;
+}
+
+.id {
+    font-weight: 700;
+}
+
+.badge {
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.ok {
+    background: linear-gradient(135deg, var(--up), #8df3c6);
+    color: #062117;
+}
+
+.pend {
+    background: #2b3142;
+    color: #c4ccd8;
+}
+
+.fail {
+    background: linear-gradient(135deg, var(--down), #ff7b7d);
+    color: #2b0708;
+}

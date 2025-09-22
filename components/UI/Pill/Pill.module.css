@@ -1,0 +1,41 @@
+.pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .2px;
+    border: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(255, 255, 255, .04), rgba(0, 0, 0, .06));
+}
+
+.green {
+    color: #0b2a1f;
+    background: linear-gradient(135deg, var(--up), #8df3c6);
+    border: none;
+}
+
+.teal {
+    color: #061b1e;
+    background: linear-gradient(135deg, var(--accent-3), #b6f1ff);
+    border: none;
+}
+
+.gold {
+    color: #0f0a02;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    border: none;
+}
+
+.dim {
+    color: var(--muted);
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+}

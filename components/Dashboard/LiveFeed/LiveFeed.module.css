@@ -1,0 +1,54 @@
+.card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 16px;
+    box-shadow: var(--shadow-glow);
+}
+
+.title {
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-top: 1px dashed rgba(255, 255, 255, .06);
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.badge {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.ok {
+    background: var(--up);
+}
+
+.pend {
+    background: #888;
+}
+
+.fail {
+    background: var(--down);
+}
+
+.id {
+    font-weight: 700;
+}
+
+.addr {
+    color: var(--muted);
+    font-size: 12px;
+}

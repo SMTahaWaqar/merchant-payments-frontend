@@ -1,0 +1,32 @@
+.shell {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 16px;
+    padding: 16px;
+}
+
+.sidebarWrap {
+    position: sticky;
+    top: 16px;
+    height: calc(100vh - 32px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    background: var(--panel);
+    box-shadow: var(--shadow-1);
+    overflow: hidden;
+}
+
+.main {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 16px;
+}
+
+.content {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    background: var(--panel);
+    box-shadow: var(--shadow-1);
+    padding: 20px;
+}

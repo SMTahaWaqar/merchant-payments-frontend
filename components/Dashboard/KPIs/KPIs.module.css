@@ -1,0 +1,33 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 16px;
+}
+
+.tile {
+    grid-column: span 4;
+}
+
+.label {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.value {
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.sub {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 16px;
+    box-shadow: var(--shadow-glow);
+}

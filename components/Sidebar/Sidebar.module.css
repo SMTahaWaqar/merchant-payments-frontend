@@ -1,0 +1,59 @@
+.root {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.brand {
+    padding: 18px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--border);
+}
+
+.brandBadge {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--grad-primary);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, .06), 0 6px 18px rgba(255, 157, 107, .25);
+}
+
+.brandName {
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+
+.nav {
+    padding: 10px;
+    display: grid;
+    gap: 8px;
+}
+
+.link {
+    padding: 10px 12px;
+    border-radius: 12px;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background .2s ease, transform .05s ease;
+}
+
+.link:hover {
+    background: var(--panel-2);
+}
+
+.linkActive {
+    background: var(--panel-2);
+    outline: 1px solid var(--border);
+}
+
+.footer {
+    margin-top: auto;
+    padding: 12px 10px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 12px;
+}

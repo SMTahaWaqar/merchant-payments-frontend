@@ -1,0 +1,38 @@
+.card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 16px;
+    box-shadow: var(--shadow-glow);
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 12px;
+}
+
+.title {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.legend {
+    display: grid;
+    gap: 8px;
+    align-content: start;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.swatch {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+}
+
+.note {
+    color: var(--muted);
+    font-size: 12px;
+}
